@@ -1,0 +1,26 @@
+App\Entity\Measurement:
+  properties:
+    date:
+      - NotBlank:
+          message: "Date should not be blank"
+          groups: [ 'create', 'edit' ]
+      - Date:
+          message: 'Enter valid format yyyy-MM-dd'
+    celsius:
+      - NotBlank:
+          message: "Temperature should not be blank"
+          groups: [ 'create', 'edit' ]
+      - Regex:
+          pattern: '/^(0|[1-9][0-9]*)$/'
+          match: true
+          message: "Please enter a number"
+          groups: [ 'create', 'edit' ]
+      - Range:
+          min: -100
+          max: 100
+          notInRangeMessage: Temperature must be between {{ min }} and {{ max }}
+          groups: [ 'create', 'edit' ]
+    location:
+      - NotBlank:
+          message: "Please choose a city"
+          groups: [ 'create', 'edit' ]
